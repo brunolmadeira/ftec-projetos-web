@@ -1,20 +1,30 @@
+# Projeto em desenvolvimento
+As informações presentes neste projeto podem sofrer alterações ao longo do semestre.
+
+## Projeto avaliativo - Disciplina da UNIFTEC
+Projeto desenvolvido para a disciplina de Projeto de Sistemas para Web no 1° semestre de 2025 da UNIFTEC Caxias do Sul.
+
+### Colaboradores
+- [Bruno Lopes Madeira](https://github.com/brunolmadeira)
+- [Julio Felipe Prá Spigolan](https://github.com/JulioFelipePS)
+
 ## Recursos disponíveis
 - Autenticação
 - Recuperação de senha
 - Cadastro de usuário
-- Add/remover seguidor
-- Excluir a conta
+- Adicionar/remover seguidor
+- Excluir conta
 - Pesquisar usuários por ID
-- Pesquisar usuário por termo
+- Pesquisar usuários por termo
 
 ## Informações do usuário
-- id
-- nome completo
-- email
-- senha
-- username
-- telefone
-- data de nascimento
-- gênero
-- descrição (bio)
-- foto
+- ID
+- Nome completo
+- E-mail
+- Senha
+- Username
+- Telefone
+- Data de nascimento
+- Gênero
+- Descrição (bio)
+- Foto
