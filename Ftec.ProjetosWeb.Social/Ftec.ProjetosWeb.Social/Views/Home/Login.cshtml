@@ -1,0 +1,118 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTEC Social - Entre ou Cadastre-se</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .input-focus:focus {
+            border-color: #3a7bd5;
+            box-shadow: 0 0 0 1px #3a7bd5;
+        }
+
+        .btn-login {
+            background: linear-gradient(to right, #3a7bd5, #00d2ff);
+            transition: all 0.3s ease;
+        }
+
+            .btn-login:hover {
+                background: linear-gradient(to right, #2c5fa8, #00a8cc);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+        .login-box {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .brand-logo i {
+                font-size: 2rem;
+                margin-right: 10px;
+                color: #3a7bd5;
+            }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <!-- Box de Login -->
+        <div class="login-box p-8 w-full">
+            <div class="brand-logo mb-8">
+                <i class="fas fa-users"></i>
+                <h1 class="text-4xl font-bold gradient-text">FTEC Social</h1>
+            </div>
+
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <input type="text" id="username" placeholder="Email ou nome de usuário"
+                           class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm input-focus focus:outline-none">
+                </div>
+                <div>
+                    <input type="password" id="password" placeholder="Senha"
+                           class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm input-focus focus:outline-none">
+                </div>
+
+                <button type="submit"
+                        class="w-full py-2.5 px-4 rounded-lg text-white font-semibold btn-login">
+                    Entrar
+                </button>
+
+                <div class="text-center mt-4">
+                    <a href="/home/redefinirsenha" class="text-sm text-blue-600 hover:text-blue-800 transition-colors">Esqueceu a senha?</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Link para cadastro -->
+        <div class="login-box mt-4 p-6 text-center">
+            <p class="text-sm text-gray-600">
+                Não tem uma conta? <a href="/home/registrar" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Cadastre-se</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            // Simulação de login
+            console.log('Tentativa de login:', username);
+            alert('Bem-vindo ao FTEC Social! (Demonstração)');
+        });
+    </script>
+</body>
+</html>

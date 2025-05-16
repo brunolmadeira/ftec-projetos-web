@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Ftec.ProjetosWeb.Social.props" />
+</Project>

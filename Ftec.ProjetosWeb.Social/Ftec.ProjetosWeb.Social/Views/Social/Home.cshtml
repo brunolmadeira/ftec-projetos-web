@@ -1,0 +1,503 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - FTEC Social</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .sidebar-item:hover {
+            background-color: #e2e8f0;
+        }
+        .sidebar-item.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .post-actions button:hover {
+            color: #3b82f6;
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        .story-item::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #3b82f6, #ec4899, #f59e0b);
+            border-radius: 9999px;
+            z-index: -1;
+        }
+        .story-item.active::after {
+            background: linear-gradient(45deg, #3b82f6, #ec4899);
+        }
+        .post-image {
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar w-64 bg-white shadow-md hidden md:block">
+        <div class="p-4 border-b border-gray-200">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="ml-3">
+                    <p class="font-semibold">Usuário Logado</p>
+                    <p class="text-xs text-gray-500">@@usuario</p>
+                </div>
+            </div>
+        </div>
+        <nav class="p-2">
+            <a href="/social/home" class="sidebar-item active flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-home mr-3"></i>
+                <span>Home</span>
+            </a>
+            <a href="/social/pesquisar" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-search mr-3"></i>
+                <span>Pesquisar</span>
+            </a>
+            <a href="/social/criar" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-plus-circle mr-3"></i>
+                <span>Criar</span>
+            </a>
+            <a href="/social/perfil" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-user mr-3"></i>
+                <span>Perfil</span>
+            </a>
+            <a href="/social/configuracoes" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-cog mr-3"></i>
+                <span>Configurações</span>
+            </a>
+            <a href="/logout" class="sidebar-item flex items-center p-3 rounded-lg text-red-500 hover:bg-red-50">
+                <i class="fas fa-sign-out-alt mr-3"></i>
+                <span>Sair</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Mobile header -->
+    <div class="md:hidden fixed top-0 left-0 right-0 bg-white shadow-sm p-4 flex justify-between items-center z-10">
+        <div class="flex items-center">
+            <h1 class="font-bold text-blue-500">FTEC Social</h1>
+        </div>
+        <div class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 font-bold">
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </div>
+
+    <!-- Mobile bottom navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-3 z-10">
+        <a href="/social/home" class="text-2xl text-gray-500">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="/social/pesquisar" class="text-2xl text-gray-500">
+            <i class="fas fa-search"></i>
+        </a>
+        <a href="/social/criar" class="text-2xl text-gray-500">
+            <i class="fas fa-plus-square"></i>
+        </a>
+        <a href="/social/perfil" class="text-2xl text-gray-500">
+            <i class="fas fa-user"></i>
+        </a>
+        <a href="/social/configuracoes" class="text-2xl text-gray-500">
+            <i class="fas fa-cog"></i>
+        </a>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex-1 overflow-y-auto pt-16 md:pt-0">
+        <div class="max-w-xl mx-auto">
+            <!-- Stories -->
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <div class="flex space-x-4 overflow-x-auto pb-2 scrollbar-hide">
+                    <!-- Your story -->
+                    <div class="flex flex-col items-center space-y-1">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=1" alt="Your story" class="w-full h-full object-cover">
+                            </div>
+                            <div class="absolute bottom-0 right-0 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center text-white border-2 border-white">
+                                <i class="fas fa-plus text-xs"></i>
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-16 text-center">Seu story</span>
+                    </div>
+
+                    <!-- Friends stories -->
+                    <div class="flex flex-col items-center space-y-1">
+                        <div class="story-item relative">
+                            <div class="w-16 h-16 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=2" alt="Friend story" class="w-full h-full object-cover rounded-full">
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-16 text-center">maria</span>
+                    </div>
+
+                    <div class="flex flex-col items-center space-y-1">
+                        <div class="story-item active relative">
+                            <div class="w-16 h-16 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=3" alt="Friend story" class="w-full h-full object-cover rounded-full">
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-16 text-center">carlos</span>
+                    </div>
+
+                    <div class="flex flex-col items-center space-y-1">
+                        <div class="story-item relative">
+                            <div class="w-16 h-16 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=4" alt="Friend story" class="w-full h-full object-cover rounded-full">
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-16 text-center">ana</span>
+                    </div>
+
+                    <div class="flex flex-col items-center space-y-1">
+                        <div class="story-item relative">
+                            <div class="w-16 h-16 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=5" alt="Friend story" class="w-full h-full object-cover rounded-full">
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-16 text-center">pedro</span>
+                    </div>
+
+                    <div class="flex flex-col items-center space-y-1">
+                        <div class="story-item relative">
+                            <div class="w-16 h-16 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=6" alt="Friend story" class="w-full h-full object-cover rounded-full">
+                            </div>
+                        </div>
+                        <span class="text-xs truncate w-16 text-center">julia</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posts -->
+            <div class="space-y-6 pb-16">
+                <!-- Post 1 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
+                    <!-- Post header -->
+                    <div class="flex items-center justify-between p-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="story-item relative">
+                                <div class="w-8 h-8 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden">
+                                    <img src="https://picsum.photos/200/200?random=7" alt="Profile" class="w-full h-full object-cover rounded-full">
+                                </div>
+                            </div>
+                            <div>
+                                <p class="font-medium text-sm">joao_silva</p>
+                            </div>
+                        </div>
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+
+                    <!-- Post image -->
+                    <div class="w-full">
+                        <img src="https://picsum.photos/800/800?random=1" alt="Post image" class="w-full post-image">
+                    </div>
+
+                    <!-- Post actions -->
+                    <div class="px-4 py-3 flex justify-between">
+                        <div class="flex space-x-4">
+                            <button class="post-action like-btn text-2xl">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="post-action text-2xl">
+                                <i class="far fa-comment"></i>
+                            </button>
+                            <button class="post-action text-2xl">
+                                <i class="far fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <button class="post-action save-btn text-2xl">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Likes -->
+                    <div class="px-4 pb-1">
+                        <p class="font-semibold text-sm">1.234 curtidas</p>
+                    </div>
+
+                    <!-- Caption -->
+                    <div class="px-4 pb-2">
+                        <p class="text-sm">
+                            <span class="font-semibold">joao_silva</span>
+                            Acabei de terminar meu projeto final da FTEC! 🎉 #ftec #programação #formação
+                        </p>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="px-4 pb-2">
+                        <p class="text-sm text-gray-500">Ver todos os 56 comentários</p>
+                        <div class="mt-1">
+                            <p class="text-sm">
+                                <span class="font-semibold">maria_oliveira</span>
+                                Parabéns João! 👏
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="px-4 pb-3">
+                        <p class="text-xs text-gray-500 uppercase">2 horas atrás</p>
+                    </div>
+
+                    <!-- Add comment -->
+                    <div class="px-4 py-3 border-t border-gray-100 flex items-center">
+                        <input type="text" placeholder="Adicione um comentário..." class="flex-1 text-sm focus:outline-none">
+                        <button class="text-blue-500 font-semibold text-sm ml-2">Publicar</button>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
+                    <!-- Post header -->
+                    <div class="flex items-center justify-between p-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                                <img src="https://picsum.photos/200/200?random=8" alt="Profile" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="font-medium text-sm">maria_oliveira</p>
+                            </div>
+                        </div>
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+
+                    <!-- Post image -->
+                    <div class="w-full">
+                        <img src="https://picsum.photos/800/800?random=2" alt="Post image" class="w-full post-image">
+                    </div>
+
+                    <!-- Post actions -->
+                    <div class="px-4 py-3 flex justify-between">
+                        <div class="flex space-x-4">
+                            <button class="post-action like-btn text-2xl">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="post-action text-2xl">
+                                <i class="far fa-comment"></i>
+                            </button>
+                            <button class="post-action text-2xl">
+                                <i class="far fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <button class="post-action save-btn text-2xl">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Likes -->
+                    <div class="px-4 pb-1">
+                        <p class="font-semibold text-sm">876 curtidas</p>
+                    </div>
+
+                    <!-- Caption -->
+                    <div class="px-4 pb-2">
+                        <p class="text-sm">
+                            <span class="font-semibold">maria_oliveira</span>
+                            Finalmente consegui resolver esse bug que estava me tirando o sono! 💻 #programação #javascript
+                        </p>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="px-4 pb-2">
+                        <p class="text-sm text-gray-500">Ver todos os 23 comentários</p>
+                        <div class="mt-1">
+                            <p class="text-sm">
+                                <span class="font-semibold">carlos_souza</span>
+                                Qual era o problema?
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="px-4 pb-3">
+                        <p class="text-xs text-gray-500 uppercase">1 dia atrás</p>
+                    </div>
+
+                    <!-- Add comment -->
+                    <div class="px-4 py-3 border-t border-gray-100 flex items-center">
+                        <input type="text" placeholder="Adicione um comentário..." class="flex-1 text-sm focus:outline-none">
+                        <button class="text-blue-500 font-semibold text-sm ml-2">Publicar</button>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
+                    <!-- Post header -->
+                    <div class="flex items-center justify-between p-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="story-item active relative">
+                                <div class="w-8 h-8 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden">
+                                    <img src="https://picsum.photos/200/200?random=9" alt="Profile" class="w-full h-full object-cover rounded-full">
+                                </div>
+                            </div>
+                            <div>
+                                <p class="font-medium text-sm">carlos_souza</p>
+                            </div>
+                        </div>
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+
+                    <!-- Post image -->
+                    <div class="w-full">
+                        <img src="https://picsum.photos/800/800?random=3" alt="Post image" class="w-full post-image">
+                    </div>
+
+                    <!-- Post actions -->
+                    <div class="px-4 py-3 flex justify-between">
+                        <div class="flex space-x-4">
+                            <button class="post-action like-btn text-2xl">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="post-action text-2xl">
+                                <i class="far fa-comment"></i>
+                            </button>
+                            <button class="post-action text-2xl">
+                                <i class="far fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <button class="post-action save-btn text-2xl">
+                            <i class="far fa-bookmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Likes -->
+                    <div class="px-4 pb-1">
+                        <p class="font-semibold text-sm">1.542 curtidas</p>
+                    </div>
+
+                    <!-- Caption -->
+                    <div class="px-4 pb-2">
+                        <p class="text-sm">
+                            <span class="font-semibold">carlos_souza</span>
+                            Compartilhando esse artigo incrível sobre as novas features do ES2023! 🚀 #javascript #es2023 #dev
+                        </p>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="px-4 pb-2">
+                        <p class="text-sm text-gray-500">Ver todos os 42 comentários</p>
+                        <div class="mt-1">
+                            <p class="text-sm">
+                                <span class="font-semibold">ana_paula</span>
+                                Muito útil! Obrigado por compartilhar!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="px-4 pb-3">
+                        <p class="text-xs text-gray-500 uppercase">3 dias atrás</p>
+                    </div>
+
+                    <!-- Add comment -->
+                    <div class="px-4 py-3 border-t border-gray-100 flex items-center">
+                        <input type="text" placeholder="Adicione um comentário..." class="flex-1 text-sm focus:outline-none">
+                        <button class="text-blue-500 font-semibold text-sm ml-2">Publicar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile bottom navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-3 z-10">
+        <a href="/social/home" class="text-2xl text-gray-700">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="/social/pesquisar" class="text-2xl text-gray-500">
+            <i class="fas fa-search"></i>
+        </a>
+        <a href="/social/criar" class="text-2xl text-gray-500">
+            <i class="fas fa-plus-square"></i>
+        </a>
+        <a href="/social/perfil" class="text-2xl text-gray-500">
+            <i class="fas fa-user"></i>
+        </a>
+        <a href="/social/configuracoes" class="text-2xl text-gray-500">
+            <i class="fas fa fa-cog"></i>
+        </a>
+    </div>
+
+    <script>
+        // Menu toggle for mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const closeMenu = document.getElementById('close-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileSidebar.classList.remove('hidden');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileSidebar.classList.add('hidden');
+        });
+
+        // Like button functionality
+        document.querySelectorAll('.like-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas', 'text-red-500');
+                } else {
+                    icon.classList.remove('fas', 'text-red-500');
+                    icon.classList.add('far');
+                }
+            });
+        });
+
+        // Save button functionality
+        document.querySelectorAll('.save-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                }
+            });
+        });
+
+        // Story click functionality
+        document.querySelectorAll('.story-item').forEach(story => {
+            story.addEventListener('click', function() {
+                // Here you would typically show the story
+                console.log('Viewing story:', this.nextElementSibling.textContent.trim());
+            });
+        });
+    </script>
+</body>
+</html>

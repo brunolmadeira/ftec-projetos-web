@@ -1,0 +1,224 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTEC Social - Crie sua conta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .input-focus:focus {
+            border-color: #3a7bd5;
+            box-shadow: 0 0 0 1px #3a7bd5;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #3a7bd5, #00d2ff);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #2c5fa8, #00a8cc);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .login-box {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-logo i {
+            font-size: 2rem;
+            margin-right: 10px;
+            color: #3a7bd5;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6b7280;
+        }
+        .password-toggle:hover {
+            color: #3a7bd5;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <!-- Box de Cadastro -->
+        <div class="login-box p-8 w-full">
+            <div class="brand-logo mb-8">
+                <i class="fas fa-users"></i>
+                <h1 class="text-4xl font-bold gradient-text">FTEC Social</h1>
+            </div>
+
+            <form id="registerForm" class="space-y-4">
+                <!-- Nome Completo -->
+                <div>
+                    <label for="fullname" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                    <div class="relative">
+                        <input type="text" id="fullname" placeholder="Digite seu nome completo"
+                               class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm input-focus focus:outline-none pl-10">
+                        <i class="fas fa-user absolute left-3 top-3.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <div class="relative">
+                        <input type="email" id="email" placeholder="Digite seu email"
+                               class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm input-focus focus:outline-none pl-10">
+                        <i class="fas fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Nome de Usuário -->
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Nome de Usuário</label>
+                    <div class="relative">
+                        <input type="text" id="username" placeholder="Escolha um nome de usuário"
+                               class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm input-focus focus:outline-none pl-10">
+                        <i class="fas fa-at absolute left-3 top-3.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Senha -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+                    <div class="relative">
+                        <input type="password" id="password" placeholder="Crie uma senha segura"
+                               class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm input-focus focus:outline-none pl-10">
+                        <i class="fas fa-lock absolute left-3 top-3.5 text-gray-400"></i>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('password')"></i>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">Mínimo de 8 caracteres com letras e números</p>
+                </div>
+
+                <!-- Confirmar Senha -->
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirmar Senha</label>
+                    <div class="relative">
+                        <input type="password" id="confirmPassword" placeholder="Confirme sua senha"
+                               class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm input-focus focus:outline-none pl-10">
+                        <i class="fas fa-lock absolute left-3 top-3.5 text-gray-400"></i>
+                        <i class="fas fa-eye password-toggle" onclick="togglePassword('confirmPassword')"></i>
+                    </div>
+                </div>
+
+                <!-- Data de Nascimento -->
+                <div>
+                    <label for="birthdate" class="block text-sm font-medium text-gray-700 mb-1">Data de Nascimento</label>
+                    <div class="relative">
+                        <input type="date" id="birthdate"
+                               class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm input-focus focus:outline-none pl-10">
+                        <i class="fas fa-calendar-day absolute left-3 top-3.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Termos e Condições -->
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="terms" type="checkbox" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="terms" class="font-medium text-gray-700">
+                            Eu concordo com os <a href="/home/legal" class="text-blue-600 hover:text-blue-800">Termos de Serviço e Política de Privacidade</a>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit"
+                        class="w-full py-2.5 px-4 rounded-lg text-white font-semibold btn-primary mt-4">
+                    Criar Conta
+                </button>
+
+                <!-- Link para login -->
+                <p class="text-center text-sm text-gray-600">
+                    Já tem uma conta? <a href="/home/login" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Faça login</a>
+                </p>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Função para mostrar/ocultar senha
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const toggleIcon = passwordField.nextElementSibling;
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        }
+
+        // Validação do formulário
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Obter valores dos campos
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const birthdate = document.getElementById('birthdate').value;
+            const termsChecked = document.getElementById('terms').checked;
+
+            // Validações básicas
+            if (!fullname || !email || !username || !password || !confirmPassword || !birthdate) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('As senhas não coincidem. Por favor, verifique.');
+                return;
+            }
+
+            if (password.length < 8) {
+                alert('A senha deve ter pelo menos 8 caracteres.');
+                return;
+            }
+
+            if (!termsChecked) {
+                alert('Você deve concordar com os Termos de Serviço e Política de Privacidade.');
+                return;
+            }
+
+            // Simulação de cadastro bem-sucedido
+            console.log('Cadastro realizado:', { fullname, email, username, birthdate });
+            alert('Cadastro realizado com sucesso! Bem-vindo ao FTEC Social!');
+
+            // Redirecionar para a página de login após cadastro
+            // window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

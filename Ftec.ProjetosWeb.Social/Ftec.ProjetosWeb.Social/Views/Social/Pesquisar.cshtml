@@ -1,0 +1,343 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar - FTEC Social</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .sidebar-item:hover {
+            background-color: #e2e8f0;
+        }
+        .sidebar-item.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .search-result:hover {
+            background-color: #f1f5f9;
+        }
+        .search-tab.active {
+            border-bottom: 2px solid #3b82f6;
+            color: #3b82f6;
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar w-64 bg-white shadow-md hidden md:block">
+        <div class="p-4 border-b border-gray-200">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="ml-3">
+                    <p class="font-semibold">Usuário Logado</p>
+                    <p class="text-xs text-gray-500">@@usuario</p>
+                </div>
+            </div>
+        </div>
+        <nav class="p-2">
+            <a href="/social/home" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-home mr-3"></i>
+                <span>Home</span>
+            </a>
+            <a href="/social/pesquisar" class="sidebar-item active flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-search mr-3"></i>
+                <span>Pesquisar</span>
+            </a>
+            <a href="/social/criar" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-plus-circle mr-3"></i>
+                <span>Criar</span>
+            </a>
+            <a href="/social/perfil"class=" sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-user mr-3"></i>
+                <span>Perfil</span>
+            </a>
+            <a href="/social/configuracoes" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-cog mr-3"></i>
+                <span>Configurações</span>
+            </a>
+            <a href="/logout" class="sidebar-item flex items-center p-3 rounded-lg text-red-500 hover:bg-red-50">
+                <i class="fas fa-sign-out-alt mr-3"></i>
+                <span>Sair</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Mobile header -->
+    <div class="md:hidden fixed top-0 left-0 right-0 bg-white shadow-sm p-4 flex justify-between items-center z-10">
+        <div class="flex items-center">
+            <h1 class="font-bold text-blue-500">FTEC Social</h1>
+        </div>
+        <div class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 font-bold">
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </div>
+
+    <!-- Mobile bottom navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-3 z-10">
+        <a href="/social/home" class="text-2xl text-gray-500">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="/social/pesquisar" class="text-2xl text-gray-500">
+            <i class="fas fa-search"></i>
+        </a>
+        <a href="/social/criar" class="text-2xl text-gray-500">
+            <i class="fas fa-plus-square"></i>
+        </a>
+        <a href="/social/perfil" class="text-2xl text-gray-500">
+            <i class="fas fa-user"></i>
+        </a>
+        <a href="/social/configuracoes" class="text-2xl text-gray-500">
+            <i class="fas fa-cog"></i>
+        </a>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex-1 overflow-y-auto pt-16 md:pt-0">
+        <div class="max-w-4xl mx-auto p-4">
+            <!-- Search bar -->
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6 sticky top-16 md:top-0 z-10">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" id="search-input" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Pesquisar pessoas, hashtags...">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                        <button id="clear-search" class="text-gray-400 hover:text-gray-600 hidden">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search tabs -->
+            <div class="flex border-b border-gray-200 mb-6">
+                <button class="search-tab active px-4 py-2 font-medium text-sm">Tudo</button>
+                <button class="search-tab px-4 py-2 font-medium text-sm text-gray-500">Pessoas</button>
+                <button class="search-tab px-4 py-2 font-medium text-sm text-gray-500">Hashtags</button>
+                <button class="search-tab px-4 py-2 font-medium text-sm text-gray-500">Publicações</button>
+            </div>
+
+            <!-- Recent searches -->
+            <div id="recent-searches" class="mb-8">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Recentes</h2>
+                <div class="space-y-2">
+                    <div class="search-result flex items-center justify-between p-3 rounded-lg cursor-pointer">
+                        <div class="flex items-center">
+                            <i class="fas fa-search text-gray-400 mr-3"></i>
+                            <span class="font-medium">#ftec</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="search-result flex items-center justify-between p-3 rounded-lg cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold mr-3">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="font-medium">@@joaosilva</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="search-result flex items-center justify-between p-3 rounded-lg cursor-pointer">
+                        <div class="flex items-center">
+                            <i class="fas fa-search text-gray-400 mr-3"></i>
+                            <span class="font-medium">#programação</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search results -->
+            <div id="search-results" class="hidden">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Resultados</h2>
+
+                <!-- People results -->
+                <div class="mb-8">
+                    <h3 class="text-md font-medium text-gray-700 mb-3">Pessoas</h3>
+                    <div class="space-y-3">
+                        <div class="search-result flex items-center justify-between p-3 rounded-lg cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Maria Oliveira</p>
+                                    <p class="text-sm text-gray-500">@@mariaoliveira</p>
+                                </div>
+                            </div>
+                            <button class="btn-primary px-4 py-1 rounded-lg text-white text-sm font-medium">
+                                Seguir
+                            </button>
+                        </div>
+                        <div class="search-result flex items-center justify-between p-3 rounded-lg cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold mr-3">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Carlos Souza</p>
+                                    <p class="text-sm text-gray-500">@@carlossouza</p>
+                                </div>
+                            </div>
+                            <button class="btn-primary px-4 py-1 rounded-lg text-white text-sm font-medium">
+                                Seguir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hashtag results -->
+                <div class="mb-8">
+                    <h3 class="text-md font-medium text-gray-700 mb-3">Hashtags</h3>
+                    <div class="space-y-3">
+                        <div class="search-result flex items-center justify-between p-3 rounded-lg cursor-pointer">
+                            <div class="flex items-center">
+                                <i class="fas fa-hashtag text-blue-500 text-xl mr-3"></i>
+                                <div>
+                                    <p class="font-medium">#ftec</p>
+                                    <p class="text-sm text-gray-500">1.234 publicações</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-result flex items-center justify-between p-3 rounded-lg cursor-pointer">
+                            <div class="flex items-center">
+                                <i class="fas fa-hashtag text-blue-500 text-xl mr-3"></i>
+                                <div>
+                                    <p class="font-medium">#programação</p>
+                                    <p class="text-sm text-gray-500">5.678 publicações</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post results -->
+                <div>
+                    <h3 class="text-md font-medium text-gray-700 mb-3">Publicações</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-1">
+                        <div class="aspect-square bg-gray-200 rounded cursor-pointer overflow-hidden">
+                            <img src="https://picsum.photos/500/500?random=1" alt="Post" class="w-full h-full object-cover">
+                        </div>
+                        <div class="aspect-square bg-gray-200 rounded cursor-pointer overflow-hidden">
+                            <img src="https://picsum.photos/500/500?random=2" alt="Post" class="w-full h-full object-cover">
+                        </div>
+                        <div class="aspect-square bg-gray-200 rounded cursor-pointer overflow-hidden">
+                            <img src="https://picsum.photos/500/500?random=3" alt="Post" class="w-full h-full object-cover">
+                        </div>
+                        <div class="aspect-square bg-gray-200 rounded cursor-pointer overflow-hidden">
+                            <img src="https://picsum.photos/500/500?random=4" alt="Post" class="w-full h-full object-cover">
+                        </div>
+                        <div class="aspect-square bg-gray-200 rounded cursor-pointer overflow-hidden">
+                            <img src="https://picsum.photos/500/500?random=5" alt="Post" class="w-full h-full object-cover">
+                        </div>
+                        <div class="aspect-square bg-gray-200 rounded cursor-pointer overflow-hidden">
+                            <img src="https://picsum.photos/500/500?random=6" alt="Post" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu toggle for mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const closeMenu = document.getElementById('close-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileSidebar.classList.remove('hidden');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileSidebar.classList.add('hidden');
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        const clearSearch = document.getElementById('clear-search');
+        const recentSearches = document.getElementById('recent-searches');
+        const searchResults = document.getElementById('search-results');
+        const searchTabs = document.querySelectorAll('.search-tab');
+
+        // Show/hide clear button based on input
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value.length > 0) {
+                clearSearch.classList.remove('hidden');
+                recentSearches.classList.add('hidden');
+                searchResults.classList.remove('hidden');
+            } else {
+                clearSearch.classList.add('hidden');
+                recentSearches.classList.remove('hidden');
+                searchResults.classList.add('hidden');
+            }
+        });
+
+        // Clear search input
+        clearSearch.addEventListener('click', () => {
+            searchInput.value = '';
+            clearSearch.classList.add('hidden');
+            recentSearches.classList.remove('hidden');
+            searchResults.classList.add('hidden');
+            searchInput.focus();
+        });
+
+        // Tab switching
+        searchTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                searchTabs.forEach(t => t.classList.remove('active', 'text-blue-600'));
+                searchTabs.forEach(t => t.classList.add('text-gray-500'));
+
+                tab.classList.add('active', 'text-blue-600');
+                tab.classList.remove('text-gray-500');
+
+                // Here you would typically filter results based on the selected tab
+                // For this example, we're just changing the UI
+            });
+        });
+
+        // Remove recent search item
+        document.querySelectorAll('.search-result button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const resultItem = button.closest('.search-result');
+                resultItem.remove();
+            });
+        });
+
+        // Click on search result
+        document.querySelectorAll('.search-result').forEach(result => {
+            result.addEventListener('click', () => {
+                // Here you would typically navigate to the selected result
+                console.log('Selected:', result.textContent.trim());
+            });
+        });
+    </script>
+</body>
+</html>

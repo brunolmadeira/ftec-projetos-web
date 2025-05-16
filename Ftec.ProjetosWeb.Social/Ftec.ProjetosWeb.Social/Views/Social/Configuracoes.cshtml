@@ -1,0 +1,283 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - FTEC Social</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .sidebar-item:hover {
+            background-color: #e2e8f0;
+        }
+        .sidebar-item.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .avatar-upload {
+            position: relative;
+            cursor: pointer;
+        }
+        .avatar-upload:hover .avatar-overlay {
+            opacity: 1;
+        }
+        .avatar-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #cbd5e1;
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+    <!-- Sidebar -->
+    <div class="sidebar w-64 bg-white shadow-md hidden md:block">
+        <div class="p-4 border-b border-gray-200">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="ml-3">
+                    <p class="font-semibold">Usuário Logado</p>
+                    <p class="text-xs text-gray-500">@@usuario</p>
+                </div>
+            </div>
+        </div>
+        <nav class="p-2">
+            <a href="/social/home" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-home mr-3"></i>
+                <span>Home</span>
+            </a>
+            <a href="/social/pesquisar" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-search mr-3"></i>
+                <span>Pesquisar</span>
+            </a>
+            <a href="/social/criar" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-plus-circle mr-3"></i>
+                <span>Criar</span>
+            </a>
+            <a href="/social/perfil" class="sidebar-item flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-user mr-3"></i>
+                <span>Perfil</span>
+            </a>
+            <a href="/social/configuracoes" class="sidebar-item active flex items-center p-3 rounded-lg mb-1">
+                <i class="fas fa-cog mr-3"></i>
+                <span>Configurações</span>
+            </a>
+            <a href="/logout" class="sidebar-item flex items-center p-3 rounded-lg text-red-500 hover:bg-red-50">
+                <i class="fas fa-sign-out-alt mr-3"></i>
+                <span>Sair</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Mobile header -->
+    <div class="md:hidden fixed top-0 left-0 right-0 bg-white shadow-sm p-4 flex justify-between items-center z-10">
+        <div class="flex items-center">
+            <h1 class="font-bold text-blue-500">FTEC Social</h1>
+        </div>
+        <div class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 font-bold">
+            <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </div>
+
+    <!-- Mobile bottom navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-3 z-10">
+        <a href="/social/home" class="text-2xl text-gray-500">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="/social/pesquisar" class="text-2xl text-gray-500">
+            <i class="fas fa-search"></i>
+        </a>
+        <a href="/social/criar" class="text-2xl text-gray-500">
+            <i class="fas fa-plus-square"></i>
+        </a>
+        <a href="/social/perfil" class="text-2xl text-gray-500">
+            <i class="fas fa-user"></i>
+        </a>
+        <a href="/social/configuracoes" class="text-2xl text-gray-500">
+            <i class="fas fa-cog"></i>
+        </a>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex-1 overflow-y-auto pt-16 md:pt-0">
+        <div class="max-w-4xl mx-auto p-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Configurações do Perfil</h1>
+
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Foto do Perfil</h2>
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                    <div class="avatar-upload w-32 h-32">
+                        <img src="https://via.placeholder.com/128" alt="Foto de perfil" class="w-full h-full rounded-full object-cover">
+                        <div class="avatar-overlay">
+                            <i class="fas fa-camera text-white text-2xl"></i>
+                        </div>
+                        <input type="file" class="hidden" accept="image/*">
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm text-gray-600 mb-4">Adicione uma foto de perfil para que seus amigos possam reconhecê-lo mais facilmente.</p>
+                        <div class="flex gap-3">
+                            <button class="btn-primary text-white px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fas fa-upload mr-2"></i> Enviar Foto
+                            </button>
+                            <button class="btn-secondary text-gray-700 px-4 py-2 rounded-lg text-sm font-medium">
+                                <i class="fas fa-trash-alt mr-2"></i> Remover
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Informações Pessoais</h2>
+                <form>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" id="nome" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field" value="João da Silva">
+                        </div>
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Nome de Usuário</label>
+                            <input type="text" id="username" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field" value="@@joaosilva">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field" value="joao@email.com">
+                        </div>
+                        <div>
+                            <label for="telefone" class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
+                            <input type="tel" id="telefone" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field" value="(51) 99999-9999">
+                        </div>
+                        <div>
+                            <label for="dataNascimento" class="block text-sm font-medium text-gray-700 mb-1">Data de Nascimento</label>
+                            <input type="date" id="dataNascimento" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field" value="1990-01-01">
+                        </div>
+                        <div>
+                            <label for="genero" class="block text-sm font-medium text-gray-700 mb-1">Gênero</label>
+                            <select id="genero" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field">
+                                <option value="">Selecione</option>
+                                <option value="masculino" selected>Masculino</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="outro">Outro</option>
+                                <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Biografia</label>
+                        <textarea id="bio" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field">Olá! Eu sou o João e adoro compartilhar momentos no FTEC Social!</textarea>
+                    </div>
+                    <div class="flex justify-end gap-3">
+                        <button type="button" class="btn-secondary text-gray-700 px-6 py-2 rounded-lg font-medium">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
+                            <i class="fas fa-save mr-2"></i> Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Alterar Senha</h2>
+                <form>
+                    <div class="grid grid-cols-1 gap-6 mb-6">
+                        <div>
+                            <label for="senha-atual" class="block text-sm font-medium text-gray-700 mb-1">Senha Atual</label>
+                            <input type="password" id="senha-atual" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field">
+                        </div>
+                        <div>
+                            <label for="nova-senha" class="block text-sm font-medium text-gray-700 mb-1">Nova Senha</label>
+                            <input type="password" id="nova-senha" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field">
+                        </div>
+                        <div>
+                            <label for="confirmar-senha" class="block text-sm font-medium text-gray-700 mb-1">Confirmar Nova Senha</label>
+                            <input type="password" id="confirmar-senha" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-field">
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" class="btn-primary text-white px-6 py-2 rounded-lg font-medium">
+                            <i class="fas fa-key mr-2"></i> Alterar Senha
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Menu toggle for mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const closeMenu = document.getElementById('close-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileSidebar.classList.remove('hidden');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileSidebar.classList.add('hidden');
+        });
+
+        // Avatar upload functionality
+        const avatarUpload = document.querySelector('.avatar-upload');
+        const fileInput = avatarUpload.querySelector('input[type="file"]');
+        const avatarImg = avatarUpload.querySelector('img');
+
+        avatarUpload.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    avatarImg.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
