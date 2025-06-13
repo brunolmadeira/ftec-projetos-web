@@ -1,0 +1,6 @@
+@Ftec.ProjetosWeb.CadCliente.API_HostAddress = http://localhost:5072
+
+GET {{Ftec.ProjetosWeb.CadCliente.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
