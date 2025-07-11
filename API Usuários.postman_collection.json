@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "42040867-b468-4cc8-b7bc-517f92816dfb",
+		"name": "API Usuários",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39458654"
+	},
+	"item": [
+		{
+			"name": "Esqueci minha senha",
+			"item": [
+				{
+					"name": "Solicitar código por email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ProjetoWebRedeSocial",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"seu@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://usuario.neurosky.com.br/api/v1/usuarios/login/alterar-senha-token",
+							"protocol": "http",
+							"host": [
+								"usuario",
+								"neurosky",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"login",
+								"alterar-senha-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar senha com o código",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ProjetoWebRedeSocial",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\":\"seu@email.com\",\r\n  \"senha\": \"Nova senha\",\r\n  \"codigoRecuperacaoSenha\": \"Código recebido no email\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios/login/alterar-senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"login",
+								"alterar-senha"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Criar e autenticar usuário",
+			"item": [
+				{
+					"name": "Criar usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ProjetoWebRedeSocial",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Nome Completo\",\r\n  \"email\": \"seu@email.coom\",\r\n  \"username\": \"usernamee\",\r\n  \"dataNascimento\": \"2000-07-10T23:51:53.521Z\",\r\n  \"senha\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Autorizar usuário (login)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ProjetoWebRedeSocial",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"login\": \"email ou username\",\r\n  \"senha\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Internas (token de login)",
+			"item": [
+				{
+					"name": "Pesquisar usuário por username",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNThjMDZkMy01MWEwLTQyODctODM2Mi01MjgwMzQyYWQ3YzgiLCJ1c2VybmFtZSI6ImJydW5vbG1hZGVpcmEiLCJleHAiOjE3NTIyMzA3NDV9.F55F_U0eWYbhnQvSFD93bZ2X8hlMMPIXv8r-ngAoBQ0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios/pesquisar-usuario-username/username",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"pesquisar-usuario-username",
+								"username"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pesquisar usuário por id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNThjMDZkMy01MWEwLTQyODctODM2Mi01MjgwMzQyYWQ3YzgiLCJ1c2VybmFtZSI6ImJydW5vbG1hZGVpcmEiLCJleHAiOjE3NTIyMzA3NDV9.F55F_U0eWYbhnQvSFD93bZ2X8hlMMPIXv8r-ngAoBQ0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios/pesquisar-usuario-id/d24b315c-2cec-4f04-b898-2c0927c78449",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"pesquisar-usuario-id",
+								"d24b315c-2cec-4f04-b898-2c0927c78449"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pesquisar usuários por termo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNThjMDZkMy01MWEwLTQyODctODM2Mi01MjgwMzQyYWQ3YzgiLCJ1c2VybmFtZSI6ImJydW5vbG1hZGVpcmEiLCJleHAiOjE3NTIyMzA3NDV9.F55F_U0eWYbhnQvSFD93bZ2X8hlMMPIXv8r-ngAoBQ0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios/pesquisar-usuarios?termo=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"pesquisar-usuarios"
+							],
+							"query": [
+								{
+									"key": "termo",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Seguir usuário por username",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNThjMDZkMy01MWEwLTQyODctODM2Mi01MjgwMzQyYWQ3YzgiLCJ1c2VybmFtZSI6ImJydW5vbG1hZGVpcmEiLCJleHAiOjE3NTIyMzA3NDV9.F55F_U0eWYbhnQvSFD93bZ2X8hlMMPIXv8r-ngAoBQ0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios/seguir?username=username",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"seguir"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "username"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parar de seguir usuário por username",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNThjMDZkMy01MWEwLTQyODctODM2Mi01MjgwMzQyYWQ3YzgiLCJ1c2VybmFtZSI6ImJydW5vbG1hZGVpcmEiLCJleHAiOjE3NTIyMzA3NDV9.F55F_U0eWYbhnQvSFD93bZ2X8hlMMPIXv8r-ngAoBQ0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios/parar-de-seguir?username=username",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"parar-de-seguir"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "username"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar informações do usuário",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNThjMDZkMy01MWEwLTQyODctODM2Mi01MjgwMzQyYWQ3YzgiLCJ1c2VybmFtZSI6ImJydW5vbG1hZGVpcmEiLCJleHAiOjE3NTIyMzA3NDV9.F55F_U0eWYbhnQvSFD93bZ2X8hlMMPIXv8r-ngAoBQ0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Nome Completo\",\r\n  \"celular\": \"Número de celular\",\r\n  \"pronome\": \"Pronomes\",\r\n  \"bio\": \"Bio\",\r\n  \"link\": \"Link\",\r\n  \"dataNascimento\": \"2025-07-11T08:16:51.193Z\",\r\n  \"fotoBase64\": \"Foto em base64\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https//localhost:57169/api/v1/usuarios",
+							"host": [
+								"https"
+							],
+							"path": [
+								"",
+								"localhost:57169",
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar conta do usuário",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNThjMDZkMy01MWEwLTQyODctODM2Mi01MjgwMzQyYWQ3YzgiLCJ1c2VybmFtZSI6ImJydW5vbG1hZGVpcmEiLCJleHAiOjE3NTIyMzA3NDV9.F55F_U0eWYbhnQvSFD93bZ2X8hlMMPIXv8r-ngAoBQ0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:57169/api/v1/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "57169",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Verifica se email disponível",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ProjetoWebRedeSocial",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:57169/api/v1/usuarios/verifica-email?email=seu@email.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57169",
+					"path": [
+						"api",
+						"v1",
+						"usuarios",
+						"verifica-email"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "seu@email.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verifica se username disponível",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ProjetoWebRedeSocial",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"login\": \"string\",\r\n  \"senha\": \"string\"\r\n}"
+				},
+				"url": {
+					"raw": "http://usuario.neurosky.com.br/api/v1/usuarios/verifica-username?username=colocarUsername",
+					"protocol": "http",
+					"host": [
+						"usuario",
+						"neurosky",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"v1",
+						"usuarios",
+						"verifica-username"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "colocarUsername"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
