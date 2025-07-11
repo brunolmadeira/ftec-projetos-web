@@ -9,22 +9,45 @@ Projeto desenvolvido para a disciplina de Projeto de Sistemas para Web no 1° se
 - [Julio Felipe Prá Spigolan](https://github.com/JulioFelipePS)
 
 ## Recursos disponíveis
-- Autenticação
-- Recuperação de senha
-- Cadastro de usuário
-- Adicionar/remover seguidor
+- Autenticação via token JWT
+- Recuperação de senha com token de 6 dígitos (válido por 15 minutos)
+- Cadastro de usuário com validação de e-mail e username
+- Verificação de disponibilidade de e-mail e username
+- Atualização de perfil (nome, celular, pronome, bio, link, data de nascimento e foto)
+- Adicionar/remover seguidor (por ID ou username)
 - Excluir conta
-- Pesquisar usuários por ID
-- Pesquisar usuários por termo
+- Pesquisar usuários por:
+  - ID
+  - Username
+  - Termo (nome ou username)
+- Seguir/Deixar de seguir usuários
 
 ## Informações do usuário
+### Dados públicos (retornados em pesquisas):
 - ID
 - Nome completo
-- E-mail
-- Senha
 - Username
-- Telefone
-- Data de nascimento
-- Gênero
-- Descrição (bio)
-- Foto
+- Foto (Base64)
+- Bio (descrição)
+- Pronome (gênero)
+- Link (perfil)
+
+### Dados retornados no login:
+- Token JWT
+- ID do usuário
+- Username
+- E-mail
+
+## Segurança
+- Todas as requisições exigem:
+  - Header `Authorization` com chave secreta `Bearer ProjetoWebRedeSocial` (para endpoints públicos)
+  - Token JWT válido (para endpoints autenticados)
+- Senhas armazenadas com hash BCrypt
+- Tokens de recuperação de senha:
+  - São numéricos de 6 dígitos
+  - Válidos por 15 minutos
+  - Invalidados após uso
+- Dados sensíveis nunca são retornados em pesquisas
+
+> **Nota:** O JSON completo com os exemplos de requisições/respostas está disponível no repositório:  
+> [API Usuários - Postman Collection](https://github.com/brunolmadeira/ftec-projetos-web/blob/main/API%20Usu%C3%A1rios.postman_collection.json)
