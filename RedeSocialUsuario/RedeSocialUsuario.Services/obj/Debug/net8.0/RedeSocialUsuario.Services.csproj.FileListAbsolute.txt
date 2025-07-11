@@ -1,0 +1,5 @@
+C:\Users\Bruno Madeira\Desktop\RedeSocial.Usuario\RedeSocialUsuario\RedeSocialUsuario.Services\obj\Debug\net8.0\RedeSocialUsuario.Services.csproj.AssemblyReference.cache
+C:\Users\Bruno Madeira\Desktop\RedeSocial.Usuario\RedeSocialUsuario\RedeSocialUsuario.Services\obj\Debug\net8.0\RedeSocialUsuario.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bruno Madeira\Desktop\RedeSocial.Usuario\RedeSocialUsuario\RedeSocialUsuario.Services\obj\Debug\net8.0\RedeSocialUsuario.Services.AssemblyInfoInputs.cache
+C:\Users\Bruno Madeira\Desktop\RedeSocial.Usuario\RedeSocialUsuario\RedeSocialUsuario.Services\obj\Debug\net8.0\RedeSocialUsuario.Services.AssemblyInfo.cs
+C:\Users\Bruno Madeira\Desktop\RedeSocial.Usuario\RedeSocialUsuario\RedeSocialUsuario.Services\obj\Debug\net8.0\RedeSocialUsuario.Services.csproj.CoreCompileInputs.cache

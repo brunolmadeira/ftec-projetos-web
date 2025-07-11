@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{236F0CB9-66D7-4DF7-9D69-5FC440D898D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedeSocialUsuario.API", "RedeSocialUsuario.API\RedeSocialUsuario.API.csproj", "{B46693A6-8FE8-4D52-A427-A189B5742557}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{147DA1A4-86B9-4EB1-A424-5A8031281C70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedeSocialUsuario.Application", "RedeSocialUsuario.Application\RedeSocialUsuario.Application.csproj", "{C8B0B5A5-93BF-49C8-B8BB-AB72FE2947E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{1CAF4D6B-56FF-40A6-A20B-FA34389AA430}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedeSocialUsuario.Domain", "RedeSocialUsuario.Domain\RedeSocialUsuario.Domain.csproj", "{980AB7FE-DEC7-4011-9B29-5522ED308666}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{27A2101F-A2CF-4526-850B-DBF1B4467689}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedeSocialUsuario.Repository", "RedeSocialUsuario.Repository\RedeSocialUsuario.Repository.csproj", "{13A86783-7883-4ADE-A626-73AA40EAF740}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B46693A6-8FE8-4D52-A427-A189B5742557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B46693A6-8FE8-4D52-A427-A189B5742557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B46693A6-8FE8-4D52-A427-A189B5742557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B46693A6-8FE8-4D52-A427-A189B5742557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8B0B5A5-93BF-49C8-B8BB-AB72FE2947E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B0B5A5-93BF-49C8-B8BB-AB72FE2947E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B0B5A5-93BF-49C8-B8BB-AB72FE2947E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B0B5A5-93BF-49C8-B8BB-AB72FE2947E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980AB7FE-DEC7-4011-9B29-5522ED308666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980AB7FE-DEC7-4011-9B29-5522ED308666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980AB7FE-DEC7-4011-9B29-5522ED308666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980AB7FE-DEC7-4011-9B29-5522ED308666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13A86783-7883-4ADE-A626-73AA40EAF740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13A86783-7883-4ADE-A626-73AA40EAF740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13A86783-7883-4ADE-A626-73AA40EAF740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13A86783-7883-4ADE-A626-73AA40EAF740}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B46693A6-8FE8-4D52-A427-A189B5742557} = {236F0CB9-66D7-4DF7-9D69-5FC440D898D0}
+		{C8B0B5A5-93BF-49C8-B8BB-AB72FE2947E1} = {147DA1A4-86B9-4EB1-A424-5A8031281C70}
+		{980AB7FE-DEC7-4011-9B29-5522ED308666} = {1CAF4D6B-56FF-40A6-A20B-FA34389AA430}
+		{13A86783-7883-4ADE-A626-73AA40EAF740} = {27A2101F-A2CF-4526-850B-DBF1B4467689}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3956EA11-5E7D-4C7C-B0BF-95919370505A}
+	EndGlobalSection
+EndGlobal
